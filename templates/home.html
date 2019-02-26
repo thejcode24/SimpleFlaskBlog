@@ -1,0 +1,12 @@
+<!-- By using "extends [filename], you can inherit from that file.-->
+{% extends "layout.html" %}
+
+<!-- Within block content block goes the unique aspect of this page.
+    In this case, show the post information. -->
+{% block content %} 
+    {% for post in posts %}
+        <h1>{{ post.title }}</h1>
+        <p>By {{ post.author }} on {{ post.date_posted }}</p>
+        <p>{{ post.content }}</p>
+    {% endfor %}
+{% endblock content %}
