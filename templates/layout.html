@@ -55,9 +55,24 @@
 
     <main role="main" class="container">
         <div class="row">
+
+            <!-- Main Content Area-->
             <div class="col-md-8">
+                <!-- Get flash message from main -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}   
+
                 {% block content %}{% endblock %}
             </div>
+
+            <!-- Sidebar -->
             <div class="col-md-4">
                 <div class="content-section">
                     <h3>Our Sidebar</h3>

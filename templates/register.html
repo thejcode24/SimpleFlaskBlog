@@ -7,24 +7,79 @@
         <form method="POST" action="">  
             <!--Part of CSRF protection that is part of WTForms-->
             {{ form.hidden_tag() }}
+
+            <!-- Registration form -->
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Join Today</legend> 
                 <div class="form-group">
+                    <!-- Username input box label -->
                     {{ form.username.label(class="form-control-label") }}
-                    {{ form.username(class="form-control form-control-lg") }}
+
+                    <!-- If input is invalid, show on-screen the error message -->
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <!-- Username input box -->
+                        {{ form.username(class="form-control form-control-lg") }}
+                    {% endif %}
+                    
                 </div>
                 <div class="form-group">
-                        {{ form.password.label(class="form-control-label") }}
+                    <!-- Password input box label -->
+                    {{ form.password.label(class="form-control-label") }}
+
+                    <!-- If input is invalid, show on-screen the error message -->
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <!-- Password input box -->
                         {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
                 <div class="form-group">
-                        {{ form.confirm_password.label(class="form-control-label") }}
+                    <!-- Confirm Password input box label -->
+                    {{ form.confirm_password.label(class="form-control-label") }}
+
+                    <!-- If input is invalid, show on-screen the error message -->
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <!-- Email input box -->
                         {{ form.confirm_password(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
 
                 <div class="form-group">
-                        {{ form.email.label(class="form-control-label") }}
+                    <!-- Email input box label -->
+                    {{ form.email.label(class="form-control-label") }}
+
+                    <!-- If input is invalid, show on-screen the error message -->
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <!-- Email input box -->
                         {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
 
             </fieldset>

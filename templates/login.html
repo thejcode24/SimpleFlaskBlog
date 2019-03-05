@@ -1,0 +1,74 @@
+<!-- By using "extends [filename], you can inherit from that file.-->
+{% extends "layout.html" %}
+
+<!-- Within block content block goes the unique aspect of this page.-->
+{% block content %} 
+    <div class="content-section">
+        <form method="POST" action="">  
+            <!--Part of CSRF protection that is part of WTForms-->
+            {{ form.hidden_tag() }}
+
+            <!-- Login form -->
+            <fieldset class="form-group">
+
+                <div class="form-group">
+                    <!-- Email input box label -->
+                    {{ form.email.label(class="form-control-label") }}
+
+                    <!-- If input is invalid, show on-screen the error message -->
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <!-- Email input box -->
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                    
+                <div class="form-group">
+                    <!-- Password input box label -->
+                    {{ form.password.label(class="form-control-label") }}
+
+                    <!-- If input is invalid, show on-screen the error message -->
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <!-- Password input box -->
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <!-- Simple Remember Me checkbox -->
+                <div class="form-check"> 
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+
+                </div>
+
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info" )}}
+            </div>
+            <small class="text-muted ml">
+                    <a href="#">Forgot Password?</a>
+            </small>
+        </form>
+    </div>
+
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <!--Use url_for to pass the name of function in main.py.-->
+            Need to Create An Account? <a class="ml-2" href="{{ url_for('register') }}">Register Here!</a>
+        </small>
+
+    </div>
+{% endblock content %}
